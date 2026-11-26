@@ -19,7 +19,7 @@ For GPUs, install the CUDA build of `jax`/`jaxlib` 0.4.28.
 python tune.py --env cc_cartpole --config-id 39 --smac-seed 0 --out runs/cc_cartpole/39/0
 ```
 
-`--config-id` picks one of the 64 hyper-hyperparameter settings drawn by `hhsens/hyperhyper.py`. Other settings are in `configs/`. The run writes `trials.csv` and `run.json` to `--out`.o
+`--config-id` picks one of the 64 hyper-hyperparameter settings drawn by `hhsens/hyperhyper.py`. Other settings are in `configs/`. The run writes `trials.csv` and `run.json` to `--out`.
 
 ## Evaluate
 

@@ -1,0 +1,71 @@
+ppo_defaults:
+  clip_eps: 0.2
+  ent_coef: 0.0
+  gae_lambda: 0.95
+  gamma: 0.99
+  learning_rate: 0.0003
+  max_grad_norm: 0.5
+  minibatch_size: 64
+  n_steps: 128
+  normalize_advantage: true
+  normalize_observations: false
+  update_epochs: 10
+  vf_clip_eps: 0.2
+  vf_coef: 0.5
+
+network_defaults:
+  activation: tanh
+  hidden_size: 64
+
+environments:
+  cc_acrobot:
+    family: cc
+    framework: gymnax
+    name: Acrobot-v1
+    steps: 100000
+    n_envs: 8
+    random_policy_return: -498.99
+    ppo: {update_epochs: 4, n_steps: 128, normalize_observations: false}
+  cc_cartpole:
+    family: cc
+    framework: gymnax
+    name: CartPole-v1
+    steps: 100000
+    n_envs: 8
+    random_policy_return: 21.83
+    ppo: {update_epochs: 20, n_steps: 32, normalize_observations: false}
+  cc_mountain_car:
+    family: cc
+    framework: gymnax
+    name: MountainCar-v0
+    steps: 100000
+    n_envs: 8
+    random_policy_return: -200.0
+    ppo: {update_epochs: 4, n_steps: 32, normalize_observations: false}
+  cc_pendulum:
+    family: cc
+    framework: gymnax
+    name: Pendulum-v1
+    steps: 100000
+    n_envs: 8
+    random_policy_return: -1242.19
+    jax_enable_x64: true
+    ppo: {update_epochs: 10, n_steps: 512, normalize_observations: false}
+
+  brax_ant: &brax
+    family: brax
+    framework: brax
+    name: ant
+    steps: 50000000
+    n_envs: 2048
+    env_kwargs: {backend: mjx}
+    random_policy_return: -12.70
+    ppo: {update_epochs: 4, n_steps: 5, normalize_observations: true}
+    network: {activation: relu, hidden_size: 256}
+  brax_halfcheetah:    {<<: *brax, name: halfcheetah, random_policy_return: -282.91}
+  brax_hopper:         {<<: *brax, name: hopper, random_policy_return: 19.19}
+  brax_humanoid:       {<<: *brax, name: humanoid, random_policy_return: 122.55}
+  brax_ant_3m:         {<<: *brax, name: ant, steps: 3000000, random_policy_return: -12.86}
+  brax_halfcheetah_3m: {<<: *brax, name: halfcheetah, steps: 3000000, random_policy_return: -282.91}
+  brax_hopper_3m:      {<<: *brax, name: hopper, steps: 3000000, random_policy_return: 19.19}
+  brax_humanoid_3m:    {<<: *brax, name: humanoid, steps: 3000000, random_policy_return: 122.43}

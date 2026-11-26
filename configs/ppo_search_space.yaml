@@ -1,0 +1,17 @@
+shared: &shared
+  learning_rate:       {type: float, lower: 1.0e-6, upper: 0.1, log: true}
+  ent_coef:            {type: float, lower: 0.0, upper: 0.5}
+  gae_lambda:          {type: float, lower: 0.8, upper: 0.9999}
+  clip_eps:            {type: float, lower: 0.0, upper: 0.5}
+  vf_clip_eps:         {type: float, lower: 0.0, upper: 0.5}
+  normalize_advantage: {type: categorical, choices: [true, false]}
+  vf_coef:             {type: float, lower: 0.0, upper: 1.0, default: 0.5}
+  max_grad_norm:       {type: float, lower: 0.0, upper: 1.0}
+
+families:
+  cc:
+    <<: *shared
+    minibatch_size: {type: categorical, choices: [128, 256, 512]}
+  brax:
+    <<: *shared
+    minibatch_size: {type: categorical, choices: [512, 1024, 2048]}

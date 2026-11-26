@@ -1,0 +1,12 @@
+budget_multiplier: 96
+n_eval_episodes: 128
+divergence_threshold: -1.0e+6
+test_seeds: [100, 101, 102, 103, 104, 105, 106, 107, 108, 109]
+
+smac:
+  n_trees: 10
+  initial_design_per_hyperparameter: 10
+  challengers: 10000
+  local_search_iterations: 10
+  random_design_probability: 0.2
+  n_trials: 1000000
